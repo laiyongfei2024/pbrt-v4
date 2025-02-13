@@ -3,6 +3,43 @@
     // Hover to view descriptions of existing attributes.
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
+    "inputs": [
+        {
+            "id": "sceneFile",
+            "type": "pickString",
+            "description": "Select a scene to render",
+            "options": [
+                "${workspaceFolder}/../pbrt-v4-scenes/watercolor/camera-1.pbrt",
+                "${workspaceFolder}/../pbrt-v4-scenes/bmw-m6/bmw-m6.pbrt",
+                "${workspaceFolder}/../pbrt-v4-scenes/lte-orb/lte-orb-blue-agat-spec.pbrt",
+                "${workspaceFolder}/../pbrt-v4-scenes/landscape/view-0.pbrt",
+                "${workspaceFolder}/../pbrt-v4-scenes/bistro/bistro_cafe.pbrt",
+                "${workspaceFolder}/../pbrt-v4-scenes/contemporary-bathroom/contemporary-bathroom.pbrt",
+            ],
+            "default": "${workspaceFolder}/../pbrt-v4-scenes/lte-orb/lte-orb-blue-agat-spec.pbrt",
+        },
+        {
+            "id": "renderMode",
+            "type": "pickString",
+            "description": "Select render mode",
+            "options": [
+                "--gpu",
+                "--cpu"
+            ],
+            "default": "--gpu"
+        },
+        {
+            "id": "debugThreadCount",
+            "type": "pickString",
+            "description": "Select number of threads for debugging",
+            "options": [
+                "1",
+                "32",
+                "64",
+            ],
+            "default": "1"
+        },
+    ],
     "configurations": [
         {
             "name": "PBRT Debug",
@@ -20,11 +57,8 @@
                 // "--spp",
                 // "1024",
                 "--nthreads",
-                "1",
-                // "${workspaceFolder}/../pbrt-v4-scenes/watercolor/camera-1.pbrt",
-                // "${workspaceFolder}/../pbrt-v4-scenes/bmw-m6/bmw-m6.pbrt",
-                "${workspaceFolder}/../pbrt-v4-scenes/lte-orb/lte-orb-blue-agat-spec.pbrt",
-                // "${workspaceFolder}/../pbrt-v4-scenes/contemporary-bathroom/contemporary-bathroom.pbrt",
+                "${input:debugThreadCount}",
+                "${input:sceneFile}",
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/.vscode/output",
@@ -38,19 +72,14 @@
             "request": "launch",
             "program": "${workspaceFolder}/buildRelease/pbrt.exe",
             "args": [
-                "--gpu",
+                "${input:renderMode}",
                 // "--wavefront",
                 // "--interactive",
                 "--display-server",
                 "localhost:14158",
                 "--spp",
-                "256",
-                // "${workspaceFolder}/../pbrt-v4-scenes/watercolor/camera-1.pbrt",
-                // "${workspaceFolder}/../pbrt-v4-scenes/bmw-m6/bmw-m6.pbrt",
-                "${workspaceFolder}/../pbrt-v4-scenes/lte-orb/lte-orb-blue-agat-spec.pbrt",
-                // "${workspaceFolder}/../pbrt-v4-scenes/landscape/view-0.pbrt",
-                // "${workspaceFolder}/../pbrt-v4-scenes/bistro/bistro_cafe.pbrt",
-                // "${workspaceFolder}/../pbrt-v4-scenes/contemporary-bathroom/contemporary-bathroom.pbrt",
+                "1024",
+                "${input:sceneFile}",
             ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}/.vscode/output",
