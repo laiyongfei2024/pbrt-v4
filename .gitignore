@@ -5,4 +5,6 @@ src/build
 .DS_Store
 .ipynb_checkpoints/
 build/
+buildRelease/
 .cache/
+.vscode/*.exr
