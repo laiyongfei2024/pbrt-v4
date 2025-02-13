@@ -1,0 +1,17 @@
+{
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+
+    "VSCodeCounter.exclude": [
+        "**/.gitignore",
+        "**/.vscode/**",
+        "**/node_modules/**",
+        "src/pbrt/util/bluenoise.cpp",
+        "src/pbrt/util/pmj02tables.cpp",
+        "src/pbrt/util/sobolmatrices.cpp",
+        "src/pbrt/util/spectrum.cpp",
+    ],
+    "VSCodeCounter.include": [
+        "**/*.h",
+        "**/*.cpp",
+    ],
+}

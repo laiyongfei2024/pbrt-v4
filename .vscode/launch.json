@@ -1,0 +1,60 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "PBRT Debug",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/pbrt.exe",
+            "args": [
+                // "--gpu",
+                // "--wavefront",
+                // "--interactive",
+                "--display-server",
+                "localhost:14158",
+                // "--log-level",
+                // "verbose",
+                // "--spp",
+                // "1024",
+                // "--nthreads",
+                // "1",
+                // "${workspaceFolder}/../pbrt-v4-scenes-master/watercolor/camera-1.pbrt",
+                // "${workspaceFolder}/../pbrt-v4-scenes-master/bmw-m6/bmw-m6.pbrt",
+                "${workspaceFolder}/../pbrt-v4-scenes-master/lte-orb/lte-orb-blue-agat-spec.pbrt",
+                // "${workspaceFolder}/../pbrt-v4-scenes-master/contemporary-bathroom/contemporary-bathroom.pbrt",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "console": "integratedTerminal",
+        },
+        {
+            "name": "PBRT Release",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/buildRelease/pbrt.exe",
+            "args": [
+                "--gpu",
+                // "--wavefront",
+                // "--interactive",
+                "--display-server",
+                "localhost:14158",
+                "--spp",
+                "64",
+                // "${workspaceFolder}/../pbrt-v4-scenes-master/watercolor/camera-1.pbrt",
+                // "${workspaceFolder}/../pbrt-v4-scenes-master/bmw-m6/bmw-m6.pbrt",
+                "${workspaceFolder}/../pbrt-v4-scenes-master/lte-orb/lte-orb-blue-agat-spec.pbrt",
+                // "${workspaceFolder}/../pbrt-v4-scenes-master/landscape/view-0.pbrt",
+                // "${workspaceFolder}/../pbrt-v4-scenes-master/bistro/bistro_cafe.pbrt",
+                // "${workspaceFolder}/../pbrt-v4-scenes-master/contemporary-bathroom/contemporary-bathroom.pbrt",
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "console": "integratedTerminal",
+        },
+    ]
+}
