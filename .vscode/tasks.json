@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build with Ninja",
+            "type": "shell",
+            "command": "cmd.exe",
+            "args": [
+                "/C",
+                "call \"C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\AUXILI~1\\Build\\vcvarsall.bat\" x64 && cd /d ${workspaceFolder}\\build && ninja"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": "$msCompile",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        }
+    ]
+}

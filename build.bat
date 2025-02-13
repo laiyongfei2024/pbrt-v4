@@ -1,16 +1,9 @@
 @echo off
 
 for %%v in (2022 2019 2017) do (
-    if exist "C:\PROGRA~1\MICROS~3\%%v\COMMUN~1\VC\Auxiliary\Build\vcvarsall.bat" (
-        set "VS_PATH=C:\PROGRA~1\MICROS~3\%%v\COMMUN~1"
-        set "VCVARS_PATH=%VS_PATH%\VC\AUXILI~1\Build\vcvarsall.bat"
+    if exist "C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat" (
+        set "VCVARS_PATH=C:\Program Files\Microsoft Visual Studio\2022\Community\VC\Auxiliary\Build\vcvarsall.bat"
         @REM echo %VCVARS_PATH%
-        call "%VCVARS_PATH%" x64
-        goto :vsfound
-    )
-    if exist "C:\PROGRA~2\MICROS~3\%%v\COMMUN~1\VC\AUXILI~1\Build\vcvarsall.bat" (
-        set "VS_PATH=C:\PROGRA~2\MICROS~3\%%v\COMMUN~1"
-        set "VCVARS_PATH=%VS_PATH%\VC\AUXILI~1\Build\vcvarsall.bat"
         call "%VCVARS_PATH%" x64
         goto :vsfound
     )
