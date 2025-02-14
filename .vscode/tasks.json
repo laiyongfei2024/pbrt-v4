@@ -5,19 +5,40 @@
             "label": "Build with Ninja",
             "type": "shell",
             "command": "${workspaceFolder}/build.bat",
-            "args": [
-            ],
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
+        },
+        {
+            "label": "Clear and ReBuild",
+            "type": "shell",
+            "command": "${workspaceFolder}/rebuild.bat",
+            "args": [],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
             "group": {
                 "kind": "build",
                 "isDefault": true
-            },
+            }
+        },
+        {
+            "label": "Restart Clangd",
+            "type": "shell",
+            "command": "${command:clangd.restart}",
             "presentation": {
-                "reveal": "always",
-                "panel": "shared"
-            },
-            "problemMatcher": "$msCompile",
-            "options": {
-                "cwd": "${workspaceFolder}"
+                "reveal": "silent",
+                "close": true
+            }
+        },
+        {
+            "label": "ReBuild and Restart Clangd",
+            "dependsOrder": "sequence",
+            "dependsOn": ["Clear and ReBuild", "Restart Clangd"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
             }
         }
     ]

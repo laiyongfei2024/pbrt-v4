@@ -64,7 +64,7 @@
             "cwd": "${workspaceFolder}/.vscode/output",
             "environment": [],
             "console": "integratedTerminal",
-            "preLaunchTask": "Build with Ninja"
+            // "preLaunchTask": "Build with Ninja"
         },
         {
             "name": "PBRT Release",
