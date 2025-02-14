@@ -4,10 +4,8 @@
         {
             "label": "Build with Ninja",
             "type": "shell",
-            "command": "cmd.exe",
+            "command": "${workspaceFolder}/build.bat",
             "args": [
-                "/C",
-                "call \"C:\\PROGRA~1\\MICROS~1\\2022\\COMMUN~1\\VC\\AUXILI~1\\Build\\vcvarsall.bat\" x64 && cd /d ${workspaceFolder}\\build && ninja"
             ],
             "group": {
                 "kind": "build",
