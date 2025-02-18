@@ -1,18 +1,18 @@
 @echo off
 setlocal EnableDelayedExpansion
 
-for %%v in (2022 2019 2017) do (
-    set "VCVARS_PATH=C:\Program Files\Microsoft Visual Studio\%%v\Community\VC\Auxiliary\Build\vcvars64.bat"
-    echo Checking for Visual Studio at: !VCVARS_PATH!
-    if exist "!VCVARS_PATH!" (
-        @REM echo !VCVARS_PATH!
-        call "!VCVARS_PATH!"
-        goto :vsfound
-    )
+rem 使用 vswhere 获取最新的 Visual Studio 安装路径
+for /f "usebackq tokens=*" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do (
+    set "VSPATH=%%i"
 )
 
-echo Visual Studio not found
-exit /b 1
+if not defined VSPATH (
+    echo Visual Studio not found
+    exit /b 1
+)
+
+rem 调用 vcvars64.bat 脚本设置环境变量
+call "%VSPATH%\VC\Auxiliary\Build\vcvars64.bat"
 
 :vsfound
 @REM echo Found Visual Studio at: %VS_PATH%
