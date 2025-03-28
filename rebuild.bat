@@ -1,6 +1,10 @@
 @echo off
 setlocal EnableDelayedExpansion
 
+rem Set default build type to Release if not specified
+set "BUILD_TYPE=Debug"
+if not "%~1"=="" set "BUILD_TYPE=%~1"
+
 rem 使用 vswhere 获取最新的 Visual Studio 安装路径
 for /f "usebackq tokens=*" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -requires Microsoft.VisualStudio.Component.VC.Tools.x86.x64 -property installationPath`) do (
     set "VSPATH=%%i"
@@ -57,7 +61,8 @@ if exist "build" (
     rmdir /s /q "build"
 )
 
-cmake -B build -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl -DCMAKE_TOOLCHAIN_FILE=%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake
+echo Building in %BUILD_TYPE% mode...
+cmake -B build -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=ON -DCMAKE_C_COMPILER=cl -DCMAKE_CXX_COMPILER=cl -DCMAKE_BUILD_TYPE=%BUILD_TYPE% -DCMAKE_TOOLCHAIN_FILE=%VCPKG_DIR%/scripts/buildsystems/vcpkg.cmake
 
 cd build
 ninja

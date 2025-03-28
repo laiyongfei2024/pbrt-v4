@@ -1,5 +1,17 @@
 {
     "version": "2.0.0",
+    "inputs": [
+        {
+            "id": "buildType",
+            "type": "pickString",
+            "description": "Select build type",
+            "options": [
+                "Debug",
+                "Release"
+            ],
+            "default": "Debug"
+        },
+    ],
     "tasks": [
         {
             "label": "Build with Ninja",
@@ -14,7 +26,7 @@
             "label": "Clear and ReBuild",
             "type": "shell",
             "command": "${workspaceFolder}/rebuild.bat",
-            "args": [],
+            "args": ["${input:buildType}"],
             "options": {
                 "cwd": "${workspaceFolder}"
             },

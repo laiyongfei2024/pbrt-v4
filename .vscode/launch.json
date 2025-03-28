@@ -15,6 +15,8 @@
                 "${workspaceFolder}/../pbrt-v4-scenes/landscape/view-0.pbrt",
                 "${workspaceFolder}/../pbrt-v4-scenes/bistro/bistro_cafe.pbrt",
                 "${workspaceFolder}/../pbrt-v4-scenes/contemporary-bathroom/contemporary-bathroom.pbrt",
+                "${workspaceFolder}/../pbrt-v4-scenes/crown/crown.pbrt",
+                "${workspaceFolder}/../pbrt-v4-scenes/pbrt-book/book.pbrt",
             ],
             "default": "${workspaceFolder}/../pbrt-v4-scenes/lte-orb/lte-orb-blue-agat-spec.pbrt",
         },
@@ -23,10 +25,10 @@
             "type": "pickString",
             "description": "Select render mode",
             "options": [
-                "--gpu",
-                "--cpu"
+                "gpu",
+                "cpu"
             ],
-            "default": "--gpu"
+            "default": "gpu"
         },
         {
             "id": "debugThreadCount",
@@ -38,6 +40,18 @@
                 "64",
             ],
             "default": "1"
+        },
+        {
+            "id": "sppCPU",
+            "type": "promptString",
+            "description": "Enter number of samples per pixel",
+            "default": "16",
+        },
+        {
+            "id": "sppGPU",
+            "type": "promptString",
+            "description": "Enter number of samples per pixel",
+            "default": "1024",
         },
     ],
     "configurations": [
@@ -54,8 +68,8 @@
                 "localhost:14158",
                 // "--log-level",
                 // "verbose",
-                // "--spp",
-                // "1024",
+                "--spp",
+                "${input:sppCPU}",
                 "--nthreads",
                 "${input:debugThreadCount}",
                 "${input:sceneFile}",
@@ -72,13 +86,13 @@
             "request": "launch",
             "program": "${workspaceFolder}/buildRelease/pbrt.exe",
             "args": [
-                "${input:renderMode}",
+                "--${input:renderMode}",
                 // "--wavefront",
                 // "--interactive",
                 "--display-server",
                 "localhost:14158",
                 "--spp",
-                "1024",
+                "${input:sppGPU}",
                 "${input:sceneFile}",
             ],
             "stopAtEntry": false,
